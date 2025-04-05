@@ -43,7 +43,7 @@ const Page = async ({ params }: RouteParams) => {
                     <div className="flex flex-row gap-2">
                         <Image src="/calendar.svg" width={22} height={22} alt="calendar" />
                         <p>
-                            {feedback?.createdAt ? dayjs(feedback.createdAt).format("MMM Do YYYY h:mm A"): "N/A"}
+                            {feedback?.createdAt ? dayjs(feedback.createdAt).format("MMM D, YYYY h:mm A"): "N/A"}
                         </p>
                     </div>
                 </div>
@@ -73,8 +73,17 @@ const Page = async ({ params }: RouteParams) => {
                     ))}
                 </ul>
             </div>
+
+            <div className="flex flex-col gap-3">
+                <h3>Areas for Improvement</h3>
+                <ul>
+                    {feedback?.areasForImprovement?.map((area, index) => (
+                        <li key={index}>{area}</li>
+                    ))}
+                </ul>
+            </div>
             <div className="buttons">
-                <Button className="button-secondary flex-1">
+                <Button className="btn-secondary flex-1">
                     <Link href="/" className="flex w-full justify-center">
                         <p className="text-sm font-semibold text-primary-200 text-center">
                             Back to Dashboard
