@@ -1,4 +1,4 @@
-import {getInterviewById} from "@/lib/actions/general.action";
+import {getFeedbackByInterviewId, getInterviewById} from "@/lib/actions/general.action";
 import {redirect} from "next/navigation";
 import Image from "next/image";
 import {getRandomInterviewCover} from "@/lib/utils";
@@ -12,6 +12,8 @@ const Page = async ({ params }: RouteParams) => {
     const interview = await getInterviewById(id);
 
     if (!interview) redirect('/')
+
+    const feedback = await getFeedbackByInterviewId({interviewId: id, userId: user?.id!});
 
     return (
         <>
@@ -32,6 +34,7 @@ const Page = async ({ params }: RouteParams) => {
                 interviewId={id}
                 type="interview"
                 questions={interview.questions}
+                feedbackId={feedback?.id}
             />
         </>
     )

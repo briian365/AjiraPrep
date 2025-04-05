@@ -14,8 +14,8 @@ const Page = async () => {
         await getLatestInterviews({ userId: user?.id! }),
     ])
 
-    const hasPastInterviews = userInterviews?.length > 0;
-    const hasUpcmingInterviews = latestInterviews?.length > 0;
+    const hasPastInterviews = userInterviews?.length! > 0;
+    const hasUpcmingInterviews = latestInterviews?.length! > 0;
     return (
         <>
             <section className="card-cta">
